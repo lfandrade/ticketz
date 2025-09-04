@@ -32,6 +32,14 @@ export function HelpProvider({ children }) {
   const [currentId, setCurrentId] = useState(undefined);
   const [open, setOpen] = useState(false);
 
+  const [panelMode, setPanelMode] = useState(
+    () => (localStorage.getItem("help.panelMode") || "drawer")
+  );
+
+  useEffect(() => {
+    localStorage.setItem("help.panelMode", panelMode);
+  }, [panelMode]);
+
   
 
   const resolve = (id) => {
@@ -59,13 +67,19 @@ export function HelpProvider({ children }) {
   };
 
   //const value = useMemo(() => ({ currentId, open, setOpen, resolve }), [currentId, open]);
-  const openFor = (id) => {
+  const openFor = (id, modeOverride) => {
     if (!id) return;
     setCurrentId(id);
+    if (modeOverride === "drawer" || modeOverride === "modal") {
+      setPanelMode(modeOverride);
+    }
     setOpen(true);
   };
   
-  const value = useMemo(() => ({ currentId, open, setOpen, resolve, openFor }), [currentId, open]);
+  const value = useMemo(
+    () => ({ currentId, open, setOpen, resolve, openFor, panelMode, setPanelMode }),
+    [currentId, open, panelMode]
+  );
 
   return <HelpContext.Provider value={value}>{children}</HelpContext.Provider>;
 }

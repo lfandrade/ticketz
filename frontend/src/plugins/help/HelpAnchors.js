@@ -138,6 +138,8 @@ export default function HelpAnchors() {
         const top = Math.max(0, rect.top + rect.height / 2 - size / 2);
 
         const title = getHelpShort(lang, id);
+        const modeAttr = (el.getAttribute("data-help-mode") || "").toLowerCase();
+        const modeOverride = (modeAttr === "modal" || modeAttr === "drawer") ? modeAttr : undefined;
 
         return (
           <div
@@ -164,7 +166,7 @@ export default function HelpAnchors() {
                 onClick={(e) => {
                   e.preventDefault();
                   e.stopPropagation();
-                  openFor(id);
+                  openFor(id, modeOverride); // se o componente pediu modal, abre modal
                 }}
               >
                 <HelpOutlineIcon fontSize="small" />
