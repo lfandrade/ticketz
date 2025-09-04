@@ -29,15 +29,14 @@ export function getHelpEntry(lang, id) {
   };
 }
 
-/**
- * Opcional (não usamos por padrão):
- * Se algum dia você QUISER registrar o ns "help" no i18n global:
- */
-export function registerHelpI18n(i18n) {
-  if (!i18n?.addResourceBundle) return;
-  const add = (lng, res) =>
-    i18n.addResourceBundle(lng, "help", res, true, true);
+export function getHelpShort(lang, id) {
+  const bundle = CATALOG[normalizeLang(lang)] || {};
+  const keyShort = `${id}.short`;
+  if (bundle[keyShort]) return bundle[keyShort];
 
-  ["pt-PT", "pt_PT", "pt-BR", "pt_BR", "pt"].forEach((lng) => add(lng, ptPT));
-  ["en-US", "en_US", "en"].forEach((lng) => add(lng, enUS));
+  const { title, description } = getHelpEntry(lang, id);
+  // 1ª frase da descrição (ou título), limitada
+  const base = (description && description !== "Help not available.") ? description : title;
+  const firstSentence = String(base).split(/(?<=[.!?])\s/)[0];
+  return firstSentence.length > 100 ? firstSentence.slice(0, 100) + "…" : firstSentence;
 }

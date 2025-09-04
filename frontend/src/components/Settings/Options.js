@@ -422,6 +422,7 @@ export default function Options(props) {
           <FormControl className={classes.selectContainer}>
             <InputLabel id="ratings-label">{i18n.t("settings.validations.title")}</InputLabel>
             <Select
+            inputProps={{ "data-help-id": "settings.validations" }}  
               labelId="ratings-label"
               value={userRating}
               onChange={async (e) => {

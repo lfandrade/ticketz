@@ -32,33 +32,7 @@ export function HelpProvider({ children }) {
   const [currentId, setCurrentId] = useState(undefined);
   const [open, setOpen] = useState(false);
 
-  useEffect(() => {
-    const onFocus = (ev) => {
-      const el = elClosestWithDataHelp(ev.target);
-      const id = el && el.getAttribute("data-help-id");
-      if (id) {
-        setCurrentId(id);
-        setOpen(true);
-      }
-    };
-
-    const onKey = (ev) => {
-      if (ev.key === "F1") {
-        ev.preventDefault();
-        setOpen((v) => !v);
-      } else if (ev.key === "Escape") {
-        setOpen(false);
-      }
-    };
-
-    document.addEventListener("focusin", onFocus, true);
-    window.addEventListener("keydown", onKey);
-
-    return () => {
-      document.removeEventListener("focusin", onFocus, true);
-      window.removeEventListener("keydown", onKey);
-    };
-  }, []);
+  
 
   const resolve = (id) => {
     if (!id) return {};
@@ -84,7 +58,15 @@ export function HelpProvider({ children }) {
     return entry; // volta o id + fallback do plugin
   };
 
-  const value = useMemo(() => ({ currentId, open, setOpen, resolve }), [currentId, open]);
+  //const value = useMemo(() => ({ currentId, open, setOpen, resolve }), [currentId, open]);
+  const openFor = (id) => {
+    if (!id) return;
+    setCurrentId(id);
+    setOpen(true);
+  };
+  
+  const value = useMemo(() => ({ currentId, open, setOpen, resolve, openFor }), [currentId, open]);
+
   return <HelpContext.Provider value={value}>{children}</HelpContext.Provider>;
 }
 

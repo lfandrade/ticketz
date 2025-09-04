@@ -12,6 +12,7 @@ import useSettings from "./hooks/useSettings";
 import Favicon from "react-favicon";
 import { getBackendURL } from "./services/config";
 import { HelpProvider } from "./plugins/help/HelpContext";
+import HelpAnchors from "./plugins/help/HelpAnchors";
 import HelpPanel from "./plugins/help/HelpPanel";
 
 import Routes from "./routes";
@@ -231,6 +232,7 @@ const App = () => {
               </SocketContext.Provider>
             </QueryClientProvider>
             <HelpPanel />
+            <HelpAnchors />
           </HelpProvider>
         </ThemeProvider>
       </PhoneCallProvider>

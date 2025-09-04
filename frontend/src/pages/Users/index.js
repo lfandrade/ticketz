@@ -210,8 +210,10 @@ const Users = () => {
       />
       <MainHeader>
         <Title>{i18n.t("users.title")}</Title>
-        <MainHeaderButtonsWrapper>
+        <MainHeaderButtonsWrapper
+        >
           <TextField
+            style={{ maxWidth: 320, marginRight: 24 }}
             placeholder={i18n.t("contacts.searchPlaceholder")}
             type="search"
             inputProps={{ "data-help-id": "contacts.search" }}          
@@ -228,7 +230,7 @@ const Users = () => {
           <Button
             variant="contained"
             color="primary"
-            inputProps={{ "data-help-id": "contacts.buttons.add" }}          
+            inputProps={{ "data-help-id": "contacts.search" }}          
             onClick={handleOpenUserModal}
           >
             {i18n.t("users.buttons.add")}
