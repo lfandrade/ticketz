@@ -1,5 +1,4 @@
 import React, { useState, useEffect, useMemo } from "react";
-
 import "react-toastify/dist/ReactToastify.css";
 import { QueryClient, QueryClientProvider } from "react-query";
 
@@ -12,6 +11,8 @@ import { SocketContext, socketManager } from './context/Socket/SocketContext';
 import useSettings from "./hooks/useSettings";
 import Favicon from "react-favicon";
 import { getBackendURL } from "./services/config";
+import { HelpProvider } from "./plugins/help/HelpContext";
+import HelpPanel from "./plugins/help/HelpPanel";
 
 import Routes from "./routes";
 
@@ -222,13 +223,16 @@ const App = () => {
     <Favicon url={ ((appLogoFavicon) ? theme.appLogoFavicon : defaultLogoFavicon ) } />
     <ColorModeContext.Provider value={{ colorMode }}>
       <PhoneCallProvider>
-      <ThemeProvider theme={theme}>
-        <QueryClientProvider client={queryClient}>
-          <SocketContext.Provider value={socketManager}>
-            <Routes />
-          </SocketContext.Provider>
-        </QueryClientProvider>
-      </ThemeProvider>
+       <ThemeProvider theme={theme}>
+          <HelpProvider>
+            <QueryClientProvider client={queryClient}>
+              <SocketContext.Provider value={socketManager}>
+                <Routes />
+              </SocketContext.Provider>
+            </QueryClientProvider>
+            <HelpPanel />
+          </HelpProvider>
+        </ThemeProvider>
       </PhoneCallProvider>
     </ColorModeContext.Provider>
     </>

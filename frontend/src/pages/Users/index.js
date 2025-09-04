@@ -214,6 +214,7 @@ const Users = () => {
           <TextField
             placeholder={i18n.t("contacts.searchPlaceholder")}
             type="search"
+            inputProps={{ "data-help-id": "contacts.search" }}          
             value={searchParam}
             onChange={handleSearch}
             InputProps={{
@@ -227,6 +228,7 @@ const Users = () => {
           <Button
             variant="contained"
             color="primary"
+            inputProps={{ "data-help-id": "contacts.buttons.add" }}          
             onClick={handleOpenUserModal}
           >
             {i18n.t("users.buttons.add")}

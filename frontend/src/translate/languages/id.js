@@ -500,9 +500,6 @@ const messages = {
           deleteTitle: "Hapus",
           deleteMessage: "Tindakan ini tidak dapat dibatalkan.",
         },
-        toasts: {
-          deleted: "Data berhasil dihapus",
-        },
       },
       contactLists: {
         title: "Daftar Kontak",
@@ -676,22 +673,6 @@ const messages = {
       },
       campaignsConfig: {
         title: "Konfigurasi Kampanye",
-      },
-      queues: {
-        title: "Antrian & Chatbot",
-        table: {
-          name: "Nama",
-          color: "Warna",
-          greeting: "Pesan Sambutan",
-          actions: "Aksi",
-        },
-        buttons: {
-          add: "Tambah Antrian",
-        },
-        confirmationModal: {
-          deleteTitle: "Hapus",
-          deleteMessage: "Apakah Anda yakin? Tindakan ini tidak dapat dibatalkan! Tiket dari antrian ini akan tetap ada tetapi tidak akan lagi ditugaskan ke antrian mana pun.",
-        },
       },
       queueSelect: {
         inputLabel: "Antrian",
