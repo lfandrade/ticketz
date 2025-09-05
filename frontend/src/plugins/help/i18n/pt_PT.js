@@ -1,7 +1,7 @@
 const ptPT = {
   fallback: "Ajuda não disponível.",
 
-  // Exemplos
+  
   "contacts.search.title": "Pesquisar contactos",
   "contacts.search.description":
     "Digite termos para localizar contactos por nome, WhatsApp, email ou número.",

@@ -66,7 +66,7 @@ export function HelpProvider({ children }) {
     return entry; // volta o id + fallback do plugin
   };
 
-  //const value = useMemo(() => ({ currentId, open, setOpen, resolve }), [currentId, open]);
+  
   const openFor = (id, modeOverride) => {
     if (!id) return;
     setCurrentId(id);
